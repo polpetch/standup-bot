@@ -1,15 +1,17 @@
+
 module.exports = {
   name: "show",
-  description: "Shows standup prompt",
+  description: "แสดงคำถามสแตนด์อัป",
   async execute(message, args) {
     message.channel.send(`
-Here is the daily standup prompt:
+นี่คือคำถามประจำวันสำหรับสแตนด์อัป:
 \`\`\`
-1. What have you done since yesterday?
-2. What are you planning on doing today?
-3. Any impediments or stumbling blocks?
-\`\`\`Please make sure you have thought about your response **_very carefully_** as standups are more for *the entire team*.
-Once you are ready to respond, simply DM me with \`!reply ...\` where \`...\` represents your response. :stuck_out_tongue:
+1. วันนี้ทำอะไรไปบ้างตั้งแต่เมื่อวาน?
+2. วันนี้มีแผนจะทำอะไร?
+3. มีปัญหาหรืออุปสรรคอะไรไหม?
+\`\`\`โปรดคิดคำตอบของคุณให้ดีก่อนนะ เพราะสแตนด์อัปเป็นสิ่งที่สำคัญสำหรับ *ทั้งทีม*.
+เมื่อคุณพร้อมที่จะตอบแล้ว ส่งข้อความมาหาฉันทาง DM ด้วยคำสั่ง \`!reply ...\` โดยที่ \`...\` คือคำตอบของคุณ :stuck_out_tongue:
     `);
   },
 };
+

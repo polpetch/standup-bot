@@ -6,12 +6,12 @@ const standupModel = require("../models/standup.model");
 module.exports = {
   name: "list",
   guildOnly: true,
-  description: "List of all members participating in the standup",
+  description: "รายชื่อสมาชิกทั้งหมดที่เข้าร่วมสแตนด์อัป",
   execute(message, args) {
     standupModel.findById(message.guild.id).then(standup => {
-      let res = "Here are all members participating in the standup:\n";
-      if(!standup.members.length) {
-        message.reply("there does not seem to be any members in the standup. Try `!am @<user> @<optional_user> ...` to add member(s)")
+      let res = "รายชื่อสมาชิกที่เข้าร่วมการสแตนด์อัปทั้งหมด:\n";
+      if (!standup.members.length) {
+        message.reply("ดูเหมือนว่าจะไม่มีสมาชิกในสแตนด์อัป ลองใช้ `!am @<user> @<optional_user> ...` เพื่อเพิ่มสมาชิกดูนะ!")
       } else {
         standup.members.forEach(member => {
           res += `<@${member}>\t`;
@@ -21,7 +21,7 @@ module.exports = {
     }).catch(err => {
       console.error(err);
       message.channel.send(
-        "Oh no :scream:! An error occured somewhere in the matrix!"
+        "โอ๊ย! :scream:! เมทริกซ์รวนแล้ว เกิดข้อผิดพลาดซะงั้น!"
       );
     })
   },

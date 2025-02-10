@@ -7,11 +7,11 @@ module.exports = {
   name: "rm",
   usage: "@<user> @<optional_user> ...",
   guildOnly: true,
-  description: "Removes a member from the standup",
+  description: "ลบสมาชิกออกจากสแตนด์อัป",
   async execute(message, args) {
     if (!args.length)
       return message.channel.send(
-        "Ruh Roh! You need to mention **_at least_** one member as argument!"
+        "อุ๊ย! คุณต้องแท็กสมาชิก อย่างน้อย หนึ่งคนก่อนนะ!"
       );
 
     standupModel
@@ -34,18 +34,18 @@ module.exports = {
 
         standup
           .save()
-          .then(() => message.channel.send("Members updated :tada:"))
+          .then(() => message.channel.send("อัปเดตสมาชิกเรียบร้อยแล้ว :tada:"))
           .catch((err) => {
             console.err(err);
             message.channel.send(
-              "Oh no :scream:! An error occured somewhere in the matrix!"
+              "โอ๊ย! :scream:! เมทริกซ์รวนแล้ว เกิดข้อผิดพลาดซะงั้น!"
             );
           });
       })
       .catch((err) => {
         console.error(err);
         message.channel.send(
-          "Oh no :scream:! An error occured somewhere in the matrix!"
+          "โอ๊ย! :scream:! เมทริกซ์รวนแล้ว เกิดข้อผิดพลาดซะงั้น!"
         );
       });
   },

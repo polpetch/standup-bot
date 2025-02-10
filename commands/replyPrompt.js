@@ -1,14 +1,15 @@
 const standupModel = require("../models/standup.model");
 
+
 module.exports = {
   name: "reply",
-  usage: "@<optional_serverId> [your-message-here]",
-  description: "Reply to standup prompt",
+  usage: "@<optional_serverId> [ข้อความของคุณที่นี่]",
+  description: "ตอบกลับคำถามจากสแตนด์อัป",
   execute(message, args) {
     if (message.channel.type === "dm") {
       if (!args.length || (args.length == 1 && args[0].startsWith("@")))
         return message.reply(
-          "Ruh Roh! You must provide a response as a message. No one likes a :ghost: as a team member :exclamation: :anger:"
+          "โอ๊ะโอ! คุณต้องส่งข้อความตอบกลับนะ ไม่งั้นจะเหมือนวิญญาณที่ไม่มีตัวตนเลยนะ :ghost: :exclamation: :anger:"
         );
 
       if (args[0].startsWith("@")) {
@@ -23,23 +24,23 @@ module.exports = {
 
               standup
                 .save()
-                .then(() => message.channel.send("Updated Response :tada:"))
+                .then(() => message.channel.send("อัปเดตคำตอบแล้ว :tada:"))
                 .catch((err) => {
                   console.error(err);
                   message.channel.send(
-                    "Oh no :scream:! An error occured somewhere in the matrix!"
+                    "โอ๊ะโอ! :scream: เกิดข้อผิดพลาดบางอย่างในระบบ!"
                   );
                 });
             } else {
               message.channel.send(
-                "Ruh Roh! You must be a team member in this server standup to reply to the response!"
+                "โอ๊ะโอ! คุณต้องเป็นสมาชิกในสแตนด์อัปเซิร์ฟเวอร์นี้ถึงจะตอบกลับได้!"
               );
             }
           })
           .catch((err) => {
             console.error(err);
             message.channel.send(
-              "Oh no :scream:! An error occured somewhere in the matrix!"
+              "โอ๊ะโอ! :scream: เกิดข้อผิดพลาดบางอย่างในระบบ!"
             );
           });
       } else {
@@ -52,11 +53,11 @@ module.exports = {
 
             if (!userStandupList.length) {
               message.channel.send(
-                "Ruh Roh! You must be a team member in ***__any__*** server standup to reply to the response!"
+                "โอ๊ะโอ! คุณต้องเป็นสมาชิกในสแตนด์อัปเซิร์ฟเวอร์ ***__ใดก็ได้__*** ถึงจะตอบกลับได้!"
               );
             } else if (userStandupList.length > 1) {
               message.channel.send(
-                "Ruh Roh! Looks like you're a member in multiple standup servers!\nTry `!reply @<serverId> [your-message-here]` if you would like to reply to a *specific* standup server.\n**_Crunchy Hint:_** To get the serverId for *any* server, right-click the server icon and press `Copy ID`.\nNote that you may need Developer options turned on. But like, what kinda developer uses a standup bot **_AND DOESN'T TURN ON DEVELOPPER SETTINGS_** :man_facepalming:"
+                "โอ๊ะโอ! ดูเหมือนว่าคุณเป็นสมาชิกในหลายเซิร์ฟเวอร์สแตนด์อัป!\nลองใช้ `!reply @<serverId> [ข้อความของคุณที่นี่]` ถ้าคุณต้องการตอบกลับเซิร์ฟเวอร์สแตนด์อัปเฉพาะ\n**_เคล็ดลับน่ารู้:_** ถ้าคุณต้องการหาค่า serverId ของเซิร์ฟเวอร์ใดก็ได้ ให้คลิกขวาที่ไอคอนเซิร์ฟเวอร์แล้วเลือก `Copy ID`\nอย่าลืมเปิด Developer options ด้วยนะ!"
               );
             } else {
               let [standup] = userStandupList;
@@ -66,11 +67,11 @@ module.exports = {
               );
               standup
                 .save()
-                .then(() => message.channel.send("Updated Response :tada:"))
+                .then(() => message.channel.send("อัปเดตคำตอบแล้ว :tada:"))
                 .catch((err) => {
                   console.error(err);
                   message.channel.send(
-                    "Oh no :scream:! An error occured somewhere in the matrix!"
+                    "โอ๊ะโอ! :scream: เกิดข้อผิดพลาดบางอย่างในระบบ!"
                   );
                 });
             }
@@ -78,12 +79,13 @@ module.exports = {
           .catch((err) => {
             console.error(err);
             message.channel.send(
-              "Oh no :scream:! An error occured somewhere in the matrix!"
+              "โอ๊ะโอ! :scream: เกิดข้อผิดพลาดบางอย่างในระบบ!"
             );
           });
       }
     } else {
-      return message.reply("private DM me with `!reply` :bomb:");
+      return message.reply("ส่งข้อความมาหาฉันทาง DM ด้วยคำสั่ง `!reply` :bomb:");
     }
   },
 };
+;

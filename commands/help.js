@@ -15,23 +15,23 @@ module.exports = {
      * If the user wants all the commands
      */
     if (!args.length) {
-      data.push("Here's a list of all my commands:");
+      data.push("มาแล้ว! นี่คือคำสั่งทั้งหมดที่ฉันมีให้ใช้!:");
       let cmds = "";
       commands.forEach(command => {
         cmds += (`\`${PREFIX}${command.name}\``).padEnd(6, '\t');
-        if(command.description) cmds += `\t*${command.description}*\n`
+        if (command.description) cmds += `\t*${command.description}*\n`
       });
       data.push(cmds);
       data.push(
-        `Try \`${PREFIX}help [command name]\` to get info on a specific command!`
+        `ลองพิมพ์ \`${PREFIX}help [ชื่อคำสั่ง]\` แล้วมาดูกันว่ามีอะไรบ้าง!`
       );
 
       return message.channel.send(data, { split: true }).catch((error) => {
-          console.error(error);
-          message.reply(
-            "Houston, we have a problem!"
-          );
-        });
+        console.error(error);
+        message.reply(
+          "ศูนย์ควบคุม! ระบบรวนแล้ว ช่วยด้วย!"
+        );
+      });
     }
 
     /**
@@ -43,7 +43,10 @@ module.exports = {
       commands.find((c) => c.aliases && c.aliases.includes(name));
 
     if (!command) {
-      return message.reply("Uh Oh! Not a valid command");
+      return message.reply(
+        "โอ๊ะโอ! ไม่มีคำสั่งนี้นะ ลองใหม่อีกที!"
+
+      );
     }
 
     data.push(`**Name:** ${command.name}`);

@@ -1,14 +1,15 @@
 const standupModel = require("../models/standup.model");
 
+
 module.exports = {
   name: "view",
   usage: "@<optional_serverId>",
-  description: "View your standup response",
+  description: "ดูคำตอบจากสแตนด์อัปของคุณ",
   execute(message, args) {
     if (message.channel.type === "dm") {
       if (args.length == 1 && !args[0].startsWith("@")) {
         return message.reply(
-          "Ruh Roh! Thats an invalid command call, try `!help view` for more information."
+          "โอ๊ะโอ! คำสั่งนี้ไม่ถูกต้อง ลองใช้ `!help view` เพื่อข้อมูลเพิ่มเติมนะ!"
         );
       } else if (args.length && args[0].startsWith("@")) {
         standupModel
@@ -17,24 +18,24 @@ module.exports = {
             if (standup.members.indexOf(message.author.id) !== -1) {
               if (standup.responses.has(message.author.id)) {
                 message.reply(
-                  "Here is your response:\n" +
-                    standup.responses.get(message.author.id)
+                  "นี่คือคำตอบของคุณ:\n" +
+                  standup.responses.get(message.author.id)
                 );
               } else {
                 message.reply(
-                  "Ruh Roh! Looks like you do not have a response yet! Add one using the command `!reply @<optional_serverId> [your-message-here]`."
+                  "โอ๊ะโอ! ดูเหมือนคุณยังไม่มีคำตอบ! เพิ่มคำตอบของคุณโดยใช้คำสั่ง `!reply @<optional_serverId> [ข้อความของคุณ]`."
                 );
               }
             } else {
               message.channel.send(
-                "Ruh Roh! You must be a team member in this server standup!"
+                "โอ๊ะโอ! คุณต้องเป็นสมาชิกในสแตนด์อัปเซิร์ฟเวอร์นี้ถึงจะดูคำตอบได้!"
               );
             }
           })
           .catch((err) => {
             console.error(err);
             message.channel.send(
-              "Oh no :scream:! An error occured somewhere in the matrix!"
+              "โอ๊ะโอ! :scream: เกิดข้อผิดพลาดบางอย่างในระบบ!"
             );
           });
       } else {
@@ -47,22 +48,22 @@ module.exports = {
 
             if (!userStandupList.length) {
               message.channel.send(
-                "Ruh Roh! You must be a team member in ***__at least one__*** server standup to view your response!"
+                "โอ๊ะโอ! คุณต้องเป็นสมาชิกในสแตนด์อัปเซิร์ฟเวอร์ ***__อย่างน้อยหนึ่ง__*** เซิร์ฟเวอร์ถึงจะดูคำตอบได้!"
               );
             } else if (userStandupList.length > 1) {
               message.channel.send(
-                "Ruh Roh! Looks like you're a member in multiple standup servers!\nTry `!view @<serverId>` if you would like to view a response for a *specific* standup server.\n**_Crunchy Hint:_** To get the serverId for *any* server, right-click the server icon and press `Copy ID`.\nNote that you may need Developer options turned on. But like, what kinda developer uses a standup bot **_AND DOESN'T TURN ON DEVELOPPER SETTINGS_** :man_facepalming:"
+                "โอ๊ะโอ! ดูเหมือนว่าคุณเป็นสมาชิกในหลายเซิร์ฟเวอร์สแตนด์อัป!\nลองใช้ `!view @<serverId>` ถ้าคุณต้องการดูคำตอบจากสแตนด์อัปเซิร์ฟเวอร์เฉพาะ\n**_เคล็ดลับน่ารู้:_** ถ้าคุณต้องการหาค่า serverId ของเซิร์ฟเวอร์ใดก็ได้ ให้คลิกขวาที่ไอคอนเซิร์ฟเวอร์แล้วเลือก `Copy ID`\nอย่าลืมเปิด Developer options ด้วยนะ!"
               );
             } else {
               let [standup] = userStandupList;
               if (standup.responses.has(message.author.id)) {
                 message.reply(
-                  "Here is your response:\n" +
-                    standup.responses.get(message.author.id)
+                  "นี่คือคำตอบของคุณ:\n" +
+                  standup.responses.get(message.author.id)
                 );
               } else {
                 message.reply(
-                  "Ruh Roh! Looks like you do not have a response yet! Add one using the command `!reply @<optional_serverId> [your-message-here]`."
+                  "โอ๊ะโอ! ดูเหมือนคุณยังไม่มีคำตอบ! เพิ่มคำตอบของคุณโดยใช้คำสั่ง `!reply @<optional_serverId> [ข้อความของคุณ]`."
                 );
               }
             }
@@ -70,12 +71,13 @@ module.exports = {
           .catch((err) => {
             console.error(err);
             message.channel.send(
-              "Oh no :scream:! An error occured somewhere in the matrix!"
+              "โอ๊ะโอ! :scream: เกิดข้อผิดพลาดบางอย่างในระบบ!"
             );
           });
       }
     } else {
-      return message.reply("private DM me with `!view` :bomb:");
+      return message.reply("ส่งข้อความมาหาฉันทาง DM ด้วยคำสั่ง `!view` :bomb:");
     }
   },
 };
+;
