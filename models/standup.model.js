@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+import { Schema, model } from "mongoose";
 
 /**
  * Schema for standup
@@ -33,4 +33,4 @@ standupSchema.methods.checkFulfilled = function (callback) {
   callback(missing);
 };
 
-module.exports = model("Standup", standupSchema);
+export default model("Standup", standupSchema);

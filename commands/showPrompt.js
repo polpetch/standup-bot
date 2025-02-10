@@ -1,9 +1,8 @@
 
-module.exports = {
-  name: "show",
-  description: "แสดงคำถามสแตนด์อัป",
-  async execute(message, args) {
-    message.channel.send(`
+export const name = "show";
+export const description = "แสดงคำถามสแตนด์อัป";
+export async function execute(message, args) {
+  message.channel.send(`
 นี่คือคำถามประจำวันสำหรับสแตนด์อัป:
 \`\`\`
 1. วันนี้ทำอะไรไปบ้างตั้งแต่เมื่อวาน?
@@ -12,6 +11,5 @@ module.exports = {
 \`\`\`โปรดคิดคำตอบของคุณให้ดีก่อนนะ เพราะสแตนด์อัปเป็นสิ่งที่สำคัญสำหรับ *ทั้งทีม*.
 เมื่อคุณพร้อมที่จะตอบแล้ว ส่งข้อความมาหาฉันทาง DM ด้วยคำสั่ง \`!reply ...\` โดยที่ \`...\` คือคำตอบของคุณ :stuck_out_tongue:
     `);
-  },
-};
+}
 
